@@ -17,7 +17,7 @@ const ImageCrop = () => {
     setOpenModal(false);
   };
 
-  const handleUpload = async ({ target: { files } }) => {
+  const handleFileChange = async ({ target: { files } }) => {
     const file = files && files[0];
     const imageDataUrl = await readFile(file);
     setImage(imageDataUrl);
@@ -28,7 +28,7 @@ const ImageCrop = () => {
     <div className="bg-gray-100 h-screen flex justify-center items-center">
       <input
         type="file"
-        onChange={handleUpload}
+        onChange={handleFileChange}
         className="hidden"
         id="avatarInput"
         accept="image/*"

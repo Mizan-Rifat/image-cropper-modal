@@ -10,7 +10,6 @@ const ImageCropModalContent = ({ handleDone, handleClose }) => {
   const handleFileChange = async ({ target: { files } }) => {
     const file = files && files[0];
     const imageDataUrl = await readFile(file);
-    // setFile(imageDataUrl as string);
     setImage(imageDataUrl);
   };
 

@@ -2,16 +2,17 @@
 import { createContext, useCallback, useContext, useState } from 'react';
 import getCroppedImg from '@/helpers/cropImage';
 
-const MAX_ZOOM = 3;
-const MIN_ZOOM = 1;
-const ZOOM_STEP = 0.1;
-const MAX_ROTATION = 360;
-const MIN_ROTATION = 0;
-const ROTATION_STEP = 5;
-
 export const ImageCropContext = createContext({});
 
-const ImageCropProvider = ({ children }) => {
+const ImageCropProvider = ({
+  children,
+  max_zoom = 3,
+  min_zoom = 1,
+  zoom_step = 0.1,
+  max_rotation = 360,
+  min_rotation = 0,
+  rotation_step = 5
+}) => {
   const [image, setImage] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
@@ -23,27 +24,24 @@ const ImageCropProvider = ({ children }) => {
   }, []);
 
   const handleZoomIn = () => {
-    if (zoom < MAX_ZOOM) {
-      setZoom(zoom + ZOOM_STEP * 2);
+    if (zoom < max_zoom) {
+      setZoom(zoom + zoom_step * 2);
     }
   };
 
   const handleZoomOut = () => {
-    if (zoom > MIN_ZOOM) {
-      setZoom(zoom - ZOOM_STEP * 2);
+    if (zoom > min_zoom) {
+      setZoom(zoom - zoom_step * 2);
     }
   };
 
   const handleRotateCw = () => {
-    console.log(rotation);
-    setRotation(rotation + ROTATION_STEP);
+    setRotation(rotation + rotation_step);
   };
 
   const handleRotateAntiCw = () => {
-    setRotation(rotation - ROTATION_STEP);
+    setRotation(rotation - rotation_step);
   };
-
-  console.log({ rotation });
 
   const getCroppedImage = async () => {
     if (image && croppedAreaPixels) {
@@ -74,12 +72,12 @@ const ImageCropProvider = ({ children }) => {
         handleZoomOut,
         handleRotateAntiCw,
         handleRotateCw,
-        MAX_ZOOM,
-        MIN_ZOOM,
-        ZOOM_STEP,
-        MAX_ROTATION,
-        MIN_ROTATION,
-        ROTATION_STEP
+        max_zoom,
+        min_zoom,
+        zoom_step,
+        max_rotation,
+        min_rotation,
+        rotation_step
       }}
     >
       {children}

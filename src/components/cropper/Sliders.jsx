@@ -8,7 +8,7 @@ import {
 import classNames from 'classnames';
 
 export const ZoomSlider = ({ className }) => {
-  const { zoom, setZoom, handleZoomIn, handleZoomOut, MAX_ZOOM, MIN_ZOOM, ZOOM_STEP } =
+  const { zoom, setZoom, handleZoomIn, handleZoomOut, max_zoom, min_zoom, zoom_step } =
     useImageCropContext();
 
   return (
@@ -19,9 +19,9 @@ export const ZoomSlider = ({ className }) => {
       <input
         type="range"
         name="volju"
-        min={MIN_ZOOM}
-        max={MAX_ZOOM}
-        step={ZOOM_STEP}
+        min={min_zoom}
+        max={max_zoom}
+        step={zoom_step}
         value={zoom}
         onChange={e => {
           setZoom(Number(e.target.value));
@@ -38,9 +38,9 @@ export const RotationSlider = ({ className }) => {
   const {
     rotation,
     setRotation,
-    MAX_ROTATION,
-    MIN_ROTATION,
-    ROTATION_STEP,
+    max_rotation,
+    min_rotation,
+    rotation_step,
     handleRotateAntiCw,
     handleRotateCw
   } = useImageCropContext();
@@ -53,9 +53,9 @@ export const RotationSlider = ({ className }) => {
       <input
         type="range"
         name="volju"
-        min={MIN_ROTATION}
-        max={MAX_ROTATION}
-        step={ROTATION_STEP}
+        min={min_rotation}
+        max={max_rotation}
+        step={rotation_step}
         value={rotation}
         onChange={e => {
           setRotation(Number(e.target.value));
