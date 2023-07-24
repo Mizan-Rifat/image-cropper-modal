@@ -9,11 +9,12 @@ const ImageCrop = () => {
   const [openModal, setOpenModal] = useState(false);
   const [preview, setPreview] = useState(user1);
 
-  const { getCroppedImage, setImage } = useImageCropContext();
+  const { getCroppedImage, setImage, resetStates } = useImageCropContext();
 
   const handleDone = async () => {
     const avatar = await getCroppedImage();
     setPreview(window.URL.createObjectURL(avatar));
+    resetStates();
     setOpenModal(false);
   };
 

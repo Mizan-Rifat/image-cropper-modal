@@ -4,6 +4,12 @@ import getCroppedImg from '@/helpers/cropImage';
 
 export const ImageCropContext = createContext({});
 
+const defaultImage = null;
+const defaultCrop = { x: 0, y: 0 };
+const defaultRotation = 0;
+const defaultZoom = 1;
+const defaultCroppedAreaPixels = null;
+
 const ImageCropProvider = ({
   children,
   max_zoom = 3,
@@ -13,11 +19,11 @@ const ImageCropProvider = ({
   min_rotation = 0,
   rotation_step = 5
 }) => {
-  const [image, setImage] = useState(null);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [rotation, setRotation] = useState(0);
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [image, setImage] = useState(defaultImage);
+  const [crop, setCrop] = useState(defaultCrop);
+  const [rotation, setRotation] = useState(defaultRotation);
+  const [zoom, setZoom] = useState(defaultZoom);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(defaultCroppedAreaPixels);
 
   const onCropComplete = useCallback((_croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -53,6 +59,14 @@ const ImageCropProvider = ({
     }
   };
 
+  const resetStates = () => {
+    setImage(defaultImage);
+    setCrop(defaultCrop);
+    setRotation(defaultRotation);
+    setZoom(defaultZoom);
+    setCroppedAreaPixels(defaultCroppedAreaPixels);
+  };
+
   return (
     <ImageCropContext.Provider
       value={{
@@ -77,7 +91,8 @@ const ImageCropProvider = ({
         zoom_step,
         max_rotation,
         min_rotation,
-        rotation_step
+        rotation_step,
+        resetStates
       }}
     >
       {children}
