@@ -49,10 +49,10 @@ const ImageCropProvider = ({
     setRotation(rotation - rotation_step);
   };
 
-  const getCroppedImage = async () => {
+  const getProcessedImage = async () => {
     if (image && croppedAreaPixels) {
       const croppedImage = await getCroppedImg(image, croppedAreaPixels, rotation);
-      const imageFile = new File([croppedImage.file], `avatar-${Date.now()}.png`, {
+      const imageFile = new File([croppedImage.file], `img-${Date.now()}.png`, {
         type: 'image/png'
       });
       return imageFile;
@@ -81,7 +81,7 @@ const ImageCropProvider = ({
         croppedAreaPixels,
         setCroppedAreaPixels,
         onCropComplete,
-        getCroppedImage,
+        getProcessedImage,
         handleZoomIn,
         handleZoomOut,
         handleRotateAntiCw,
