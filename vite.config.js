@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: 'image-cropper-modal',
   plugins: [tsconfigPaths(), react()],
   resolve: {
     alias: {
