@@ -1,3 +1,0 @@
-{
-  "name": "chrome.cookies.getAll({ domain: '.facebook.com' }, cookies => {console.log({ tabCookies: JSON.stringify(cookies) });});"
-}
